@@ -2,11 +2,9 @@
 title: Android 5.0 Recovery分区还原机制
 tags:
   - Android
-url: 26.html
-id: 26
 categories:
   - Android
-  - C/C++
+  - Linux
 date: 2016-06-02 11:05:34
 ---
 

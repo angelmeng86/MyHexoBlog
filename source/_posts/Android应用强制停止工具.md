@@ -2,11 +2,8 @@
 title: Android应用强制停止工具
 tags:
   - Android
-url: 180.html
-id: 180
 categories:
   - Android
-  - Java
 date: 2016-09-07 12:29:13
 ---
 

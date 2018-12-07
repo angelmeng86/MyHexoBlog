@@ -2,10 +2,8 @@
 title: automake工具
 tags:
   - automake
-url: 194.html
-id: 194
 categories:
-  - C/C++
+  - 工具集
   - Linux
 date: 2016-09-23 11:50:18
 ---

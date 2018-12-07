@@ -2,9 +2,6 @@
 title: Android 4.0.3源码环境搭建及编译常见问题
 tags:
   - Android
-  - linux
-url: 93.html
-id: 93
 categories:
   - Android
   - Linux

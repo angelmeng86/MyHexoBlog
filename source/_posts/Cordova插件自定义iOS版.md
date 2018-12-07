@@ -1,9 +1,7 @@
 ---
 title: Cordova插件自定义iOS版
 tags:
-  - cordova
-url: 230.html
-id: 230
+  - Cordova
 categories:
   - 混合开发
 date: 2017-02-19 16:38:25

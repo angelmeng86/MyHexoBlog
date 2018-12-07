@@ -2,8 +2,6 @@
 title: Android驱动设备节点自动创建
 tags:
   - Android
-url: 214.html
-id: 214
 categories:
   - Android
   - Linux

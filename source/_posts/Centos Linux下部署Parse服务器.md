@@ -2,8 +2,6 @@
 title: Centos Linux下部署Parse服务器
 tags:
   - Parse
-url: 253.html
-id: 253
 categories:
   - 工具集
 date: 2017-03-05 17:42:45

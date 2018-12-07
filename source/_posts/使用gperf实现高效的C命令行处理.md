@@ -1,12 +1,8 @@
 ---
 title: 使用 gperf 实现高效的 C/C++ 命令行处理
 tags:
-  - C/C++
   - gperf
-url: 196.html
-id: 196
 categories:
-  - C/C++
   - Linux
 date: 2016-09-24 09:37:15
 ---

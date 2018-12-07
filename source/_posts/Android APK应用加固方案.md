@@ -3,13 +3,8 @@ title: Android APK应用加固方案
 tags:
   - Android
   - 加壳
-  - 移动安全
-url: 29.html
-id: 29
 categories:
   - Android
-  - C/C++
-  - Java
 date: 2016-06-02 11:09:23
 ---
 
