@@ -11,50 +11,17 @@ date: 2016-09-20 09:39:28
 Type Signatures
 ---------------
 
-Type Signature
+| Type Signature | Java Type |
+| -------------- | --------- |
+| Z | boolean |
+| B | byte |
+| C | char |
+| S | short |
+| I | int |
+| J | long |
+| F | float |
+| D | double |
+| L fully-qualified-class; | fully-qualified-class |
+| [ type | type[] |
+| ( arg-types ) ret-type | method type |
 
-Java Type
-
-Z
-
-boolean
-
-B
-
-byte
-
-C
-
-char
-
-S
-
-short
-
-I
-
-int
-
-J
-
-long
-
-F
-
-float
-
-D
-
-double
-
-L fully-qualified-class ;
-
-fully-qualified-class
-
-\[ type
-
-type\[\]
-
-( arg-types ) ret-type
-
-method type

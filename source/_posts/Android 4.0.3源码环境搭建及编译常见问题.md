@@ -7,114 +7,94 @@ categories:
 date: 2016-06-15 19:52:50
 ---
 
-一、完全编译说明
+#一、完全编译说明
 
-系统：Ubuntu12.04.3-i386
-
+>系统：Ubuntu12.04.3-i386
 JDK：jdk-6u29-linux-i586
-
 源码：iTop4412_ICS
 
 虚拟机硬件要求：建议2GB内存，交换空间至少4GB（Android4.0以上要求），编译的硬盘空间至少25GB以上。
-
 首先按照开发版中的说明文档进行编译环境的搭建，在上述运行环境下出现的错误及解决办法说明：
 
+```
 sudo apt-get install xinetd build-essential nfs-kernel-server apache2 samba git-core gnupg flex bison gperf libsdl-dev libesd0-dev libwxgtk2.6-dev build-essential zip curl libncurses5-dev zlib1g-dev cscope uboot-mkimage
-
 sudo apt-get install lib32z1-dev
-
 sudo apt-get install lib32ncurses5-dev
-
 sudo apt-get install libswitch-perl
-
 sudo apt-get install git gnupg flex bison gperf build-essential zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-dri:i386 libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils xsltproc zlib1g-dev:i386 dpkg-dev lib32z1-dev lib32ncurses5-dev libswitch-perl
+```
+##1.内核源码编译成功！
 
-1、内核源码编译成功！
-
-2、Android源码编译问题依次如下：
-
-1）、make: *** \[out/host/linux-x86/obj/EXECUTABLES/obbtool_intermediates/Main.o\] Error 1
+##2.Android源码编译问题依次如下：
+错误一
+>make: *** \[out/host/linux-x86/obj/EXECUTABLES/obbtool_intermediates/Main.o\] Error 1
 
 此处编译错误是由于ubuntu 11.10采用了GCC4.6.1导致的。
-
 解决方法：
-
-修改源码目录下/build/core/combo/HOST_linux-x86.mk文件：
-
+>修改源码目录下/build/core/combo/HOST_linux-x86.mk文件：
 将以下语句
-
 HOST\_GLOBAL\_CFLAGS += -D\_FORTIFY\_SOURCE=0
-
 修改为
-
 HOST\_GLOBAL\_CFLAGS += -U\_FORTIFY\_SOURCE -D\_FORTIFY\_SOURCE=0
-
-2)、frameworks/compile/slang/slang\_rs\_export_foreach.cpp:249:23: 错误： variable ‘ParamName’ set but not used \[-Werror=unused-but-set-variable\]
-
-cc1plus: all warnings being treated as errors
-
+---
+错误二
+>frameworks/compile/slang/slang\_rs\_export_foreach.cpp:249:23: 错误： variable ‘ParamName’ set but not used \[-Werror=unused-but-set-variable\]
+>cc1plus: all warnings being treated as errors
 make: *** \[out/host/linux-x86/obj/EXECUTABLES/llvm-rs-cc\_intermediates/slang\_rs\_export\_foreach.o\] 错误 1
 
 解决办法：
-
-首先，在工程根目录下，打开下面的makefile文件： $ vi frameworks/compile/slang/Android.mk 其次，在打开的makefile文件中按照下面更改(22行)： local\_cflags\_for_slang := -Wno-sign-promo -Wall -Wno-unused-parameter -Werror
-
+>首先，在工程根目录下，打开下面的makefile文件： $ vi frameworks/compile/slang/Android.mk 其次，在打开的makefile文件中按照下面更改(22行)： local\_cflags\_for_slang := -Wno-sign-promo -Wall -Wno-unused-parameter -Werror
 修改为 local\_cflags\_for_slang := -Wno-sign-promo -Wall -Wno-unused-parameter
+---
+错误三
+>\[out/host/linux-x86/obj/STATIC\_LIBRARIES/libMesa\_intermediates/src/glsl/linker.o\]
 
-3）、\[out/host/linux-x86/obj/STATIC\_LIBRARIES/libMesa\_intermediates/src/glsl/linker.o\]
+解决办法：
+>$ vi external/mesa3d/src/glsl/linker.cpp 添加： #include <cstddef>
+---
+>错误四
+\[out/host/linux-x86/obj/STATIC\_LIBRARIES/liboprofile\_pp\_intermediates/arrange\_profiles.o\]
 
 解决办法：
 
-$ vi external/mesa3d/src/glsl/linker.cpp 添加： #include <cstddef>
-
-4）、\[out/host/linux-x86/obj/STATIC\_LIBRARIES/liboprofile\_pp\_intermediates/arrange\_profiles.o\]
-
-解决办法：
-
-$ vim external/oprofile/libpp/format_output.h
-
+>$ vim external/oprofile/libpp/format_output.h
 找到 94行，把 mutable 字符串注释掉；
-
-5）、\[out/host/linux-x86/obj/STATIC\_LIBRARIES/libgtest\_host_intermediates/gtest-all.o\]
-
-解决办法：
-
-$ vi external/gtest/include/gtest/internal/gtest-param-util.h 添加： #include <cstddef>
-
-6）、\[out/host/linux-x86/obj/EXECUTABLES/test-librsloader_intermediates/test-librsloader\]
+---
+错误五
+>\[out/host/linux-x86/obj/STATIC\_LIBRARIES/libgtest\_host_intermediates/gtest-all.o\]
 
 解决办法：
+>$ vi external/gtest/include/gtest/internal/gtest-param-util.h 添加： #include <cstddef>
+---
+错误六
+>\[out/host/linux-x86/obj/EXECUTABLES/test-librsloader_intermediates/test-librsloader\]
 
-$vim external/llvm/llvm-host-build.mk
-
+解决办法：
+>$vim external/llvm/llvm-host-build.mk
 在文件中插入一行： LOCAL_LDLIBS := -lpthread -ldl
 
 上述问题解决后，Android源码的编译过程应该能正确通过。
 
-64Bit补充：
+##64Bit补充：
 
-1）、\[out/host/linux-x86/obj/EXECUTABLES/aapt_intermediates/aapt\] Error 1
-
-解决：
-
-sudo apt-get install lib32z1-dev
-
-2）、\[out/host/linux-x86/obj/EXECUTABLES/adb_intermediates/adb\] Error 1
+错误一
+>\[out/host/linux-x86/obj/EXECUTABLES/aapt_intermediates/aapt\] Error 1
 
 解决：
+>sudo apt-get install lib32z1-dev
 
-sudo apt-get install lib32ncurses5-dev
+错误二
+>\[out/host/linux-x86/obj/EXECUTABLES/adb_intermediates/adb\] Error 1
 
-二、源码模块单独编译说明
+解决：
+>sudo apt-get install lib32ncurses5-dev
+
+#二、源码模块单独编译说明
 
 在进行下述操作之前，我们需要手工对iTop4412源码进行单独的目标平台配置，拷贝iTop4412/iTop4412_ICS/device/moto/stingray/vendorsetup.sh文件至iTop4412/iTop4412_ICS/device/samsung/smdk4x12/目录下，然后进行修改：
 
-把
-
-add\_lunch\_combo full_stingray-userdebug
-
+>add\_lunch\_combo full_stingray-userdebug
 修改为
-
 add\_lunch\_combo full_smdk4x12-eng
 
 最后在源码目录下执行source ./build/envsetup.sh命令进行目标编译项加载，再执行指令lunch选择full_smdk4x12-eng作为编译目标平台，至此配置进行完毕。
@@ -130,19 +110,12 @@ Google为我们准备了另外的命令来支持编译单独的模块，以及�
 注意，这是一个source命令，执行之后，就会有一些额外的命令可以使用：
 
 **\- croot: Changes directory to the top of the tree.**
-
 **\- m: Makes from the top of the tree.**
-
 **\- mm: Builds all of the modules in the current directory.**
-
 **\- mmm: Builds all of the modules in the supplied directories.**
-
 **\- cgrep: Greps on all local C/C++ files.**
-
 **\- jgrep: Greps on all local Java files.**
-
 **\- resgrep: Greps on all local res/*.xml files.**
-
 **\- godir: Go to the directory containing a file.**
 
 这些命令的具体用法，可以在命令的后面加-help来查看，这里我们只关注mmm命令，也就是可以用它来编译指定目录的所有模块，通常这个目录只包含一个模块。
@@ -167,13 +140,11 @@ make snod and emulator builds.
 ------------------------------
 
 **Symptom**: When using make snod (make system no dependencies) on emulator builds, the resulting build doesn't work.
-
 **Cause**: All emulator builds now run Dex optimization at build time by default, which requires to follow all dependencies to re-optimize the applications each time the framework changes.
-
 **Fix**: Locally disable Dex optimizations with export WITH_DEXPREOPT=false, delete the existing optimized versions with make installclean and run a full build to re-generate non-optimized versions. After that, make snod will work.
 
 Stale ODEX dependencies cause unbootable Android
-================================================
+------------------------------
 
 This document is based on the code of Android 4.1.1_r6.1 (Jelly Bean).
 

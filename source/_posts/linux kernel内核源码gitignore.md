@@ -7,16 +7,17 @@ categories:
 date: 2016-09-30 10:51:57
 ---
 
+```
 #
-\# NOTE! Don't add files that are generated in specific
-\# subdirectories here. Add them in the ".gitignore" file
-\# in that subdirectory instead.
+# NOTE! Don't add files that are generated in specific
+# subdirectories here. Add them in the ".gitignore" file
+# in that subdirectory instead.
 #
-\# NOTE! Please use 'git ls-files -i --exclude-standard'
-\# command after changing this file, to see if there are
-\# any tracked files which get ignored after the change.
+# NOTE! Please use 'git ls-files -i --exclude-standard'
+# command after changing this file, to see if there are
+# any tracked files which get ignored after the change.
 #
-\# Normal rules
+# Normal rules
 #
 .*
 *.o
@@ -45,7 +46,7 @@ modules.builtin
 Module.symvers
 
 #
-\# Top-level generic files
+# Top-level generic files
 #
 /tags
 /TAGS
@@ -56,35 +57,35 @@ Module.symvers
 /Module.markers
 
 #
-\# Debian directory (make deb-pkg)
+# Debian directory (make deb-pkg)
 #
 /debian/
 
 #
-\# git files that we don't want to ignore even it they are dot-files
+# git files that we don't want to ignore even it they are dot-files
 #
 !.gitignore
 !.mailmap
 
 #
-\# Generated include files
+# Generated include files
 #
 include/config
 include/generated
 arch/*/include/generated
 
-\# stgit generated dirs
+# stgit generated dirs
 patches-*
 
-\# quilt's files
+# quilt's files
 patches
 series
 
-\# cscope files
+# cscope files
 cscope.*
 ncscope.*
 
-\# gnu global files
+# gnu global files
 GPATH
 GRTAGS
 GSYMS
@@ -95,12 +96,14 @@ GTAGS
 \\#*#
 
 #
-\# Leavings from module signing
+# Leavings from module signing
 #
 extra_certificates
 signing_key.priv
 signing_key.x509
 x509.genkey
 
-\# Kconfig presets
+# Kconfig presets
 all.config
+
+```

@@ -6,5 +6,9 @@ categories:
   - 移动端开发
 date: 2016-07-31 20:38:40
 ---
-
-self.navigationItem.backBarButtonItem = \[\[UIBarButtonItem alloc\] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil\];
+```
+[self.navigationItem.backBarButtonItem = 
+    [[UIBarButtonItem alloc] initWithTitle:@"" 
+                             style:UIBarButtonItemStylePlain 
+                             target:nil action:nil];
+```

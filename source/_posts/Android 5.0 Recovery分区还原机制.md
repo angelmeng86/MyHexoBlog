@@ -15,8 +15,17 @@ date: 2016-06-02 11:05:34
 0x01 真相
 -------
 
-首先，Andorid编译过程中会生成system/recovery-from-boot.p，该包是由recovery.img与boot.img计算产生的patch包，用于还原recovery分区准备的。 其次，Android编译输出目录下，root目录的init.rc加入如下启动项： service flash\_recovery /system/bin/install-recovery.sh class main seclabel u:r:install\_recovery:s0 oneshot 我们再来看看这个install-recovery.sh脚本，如下： #!/system/bin/sh if ! applypatch -c EMMC:/dev/block/bootdevice/by-name/recovery:32059648:5ab7bc2f80c9c6f98f444b2ff8e72277ceb7e142; then applypatch -b /system/etc/recovery-resource.dat EMMC:/dev/block/bootdevice/by-name/boot:31394048:34dd9856663d4a11a8eaaafd422e10ce88c03b47 EMMC:/dev/block/bootdevice/by-name/recovery 5ab7bc2f80c9c6f98f444b2ff8e72277ceb7e142 32059648 34dd9856663d4a11a8eaaafd422e10ce88c03b47:/system/recovery-from-boot.p && log -t recovery “Installing new recovery image: succeeded” || log -t recovery “Installing new recovery image: failed” else log -t recovery “Recovery image already installed” fi
-
+首先，Andorid编译过程中会生成system/recovery-from-boot.p，该包是由recovery.img与boot.img计算产生的patch包，用于还原recovery分区准备的。 
+其次，Android编译输出目录下，root目录的init.rc加入如下启动项： service flash\_recovery /system/bin/install-recovery.sh class main seclabel u:r:install\_recovery:s0 oneshot 我们再来看看这个install-recovery.sh脚本，
+如下： 
+```
+#!/system/bin/sh 
+if ! applypatch -c EMMC:/dev/block/bootdevice/by-name/recovery:32059648:5ab7bc2f80c9c6f98f444b2ff8e72277ceb7e142; 
+then applypatch -b /system/etc/recovery-resource.dat EMMC:/dev/block/bootdevice/by-name/boot:31394048:34dd9856663d4a11a8eaaafd422e10ce88c03b47 EMMC:/dev/block/bootdevice/by-name/recovery 5ab7bc2f80c9c6f98f444b2ff8e72277ceb7e142 32059648 34dd9856663d4a11a8eaaafd422e10ce88c03b47:/system/recovery-from-boot.p && log -t recovery “Installing new recovery image: succeeded” || log -t recovery “Installing new recovery image: failed” 
+else 
+log -t recovery “Recovery image already installed” 
+fi
+```
 0x02 总结
 -------
 

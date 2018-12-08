@@ -21,15 +21,19 @@ Android系统中Setting设置有个功能，应用程序强制停止，该功能
 ---------
 
 //通过传入应用程序包名强制停止该应用，并且不允许该应用自动启动，直到用户手动启动它
+``` java
 private void killProcesses(String packname) {
-ActivityManager am = (ActivityManager)this.getSystemService(
-Context.ACTIVITY_SERVICE);
-am.forceStopPackage(packname);
+    ActivityManager am = (ActivityManager)this.getSystemService(
+    Context.ACTIVITY_SERVICE);
+    am.forceStopPackage(packname);
 }
-
+```
 上述方法需要的包名我们可以通过两种方式获取，一种是通过Android的服务接口获取当前所安装的应用，另一种是通过shell命令获取； 下面讲的就是通过shell命令获取的方法：
-
 //获取第三方安装的应用包名列表，可以使用adb shell终端输入看看结果
-pm list packages -3
 
-得到包名后就可以结合上述killProcesses方法进行批量应用的停止清理操作了； 具体工程参考：[https://github.com/angelmeng86/AppForceStop](https://github.com/angelmeng86/AppForceStop)
+```
+pm list packages -3
+```
+
+得到包名后就可以结合上述killProcesses方法进行批量应用的停止清理操作了； 具体工程参考：
+[https://github.com/angelmeng86/AppForceStop](https://github.com/angelmeng86/AppForceStop)

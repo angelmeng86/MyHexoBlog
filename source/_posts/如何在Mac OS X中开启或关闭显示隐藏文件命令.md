@@ -7,4 +7,13 @@ categories:
 date: 2016-09-24 22:33:34
 ---
 
-显示：defaults write com.apple.finder AppleShowAllFiles -bool true 隐藏：defaults write com.apple.finder AppleShowAllFiles -bool false
+显示：
+```
+defaults write com.apple.finder AppleShowAllFiles -bool true 
+```
+
+隐藏：
+
+```
+defaults write com.apple.finder AppleShowAllFiles -bool false
+```

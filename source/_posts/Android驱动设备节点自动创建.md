@@ -7,7 +7,7 @@ categories:
 date: 2016-10-19 11:08:15
 ---
 
-0x00 背景
+x00 背景
 -------
 
 最近帮同事解决一个问题，就是在Ubuntu（主机）下编译的USB驱动程序，在设备热插拔的时候会自动创建设备节点，但是该驱动程序移植到Android系统下，则需要手动创建节点，该节点还需要手工配置DAC和MAC安全策略，对于实际使用中非常麻烦；
@@ -16,7 +16,7 @@ date: 2016-10-19 11:08:15
 ------------
 
 参见文章《[Android Uevent 分析，从kernel到framework](http://blog.chinaunix.net/uid-24545924-id-3128349.html) 》 我们知道Android上层的uevent事件使用了自个的一套实现，接下来我们开发分析代码，源码文件：system/core/init/devices.c
-
+```
 static void handle\_generic\_device_event(struct uevent *uevent)
 {
     char *base;
@@ -29,8 +29,8 @@ static void handle\_generic\_device_event(struct uevent *uevent)
     name = parse\_device\_name(uevent, 64);
     if (!name)
         return;
-//打印收到的热插拔事件信息
-INFO("maple usb1: device\_name:%s, major:%d, minor:%d, action:%s name:%s\\n",  uevent->device\_name, uevent->major, uevent->minor, uevent->action, name);
+    //打印收到的热插拔事件信息
+    INFO("maple usb1: device\_name:%s, major:%d, minor:%d, action:%s name:%s\\n",  uevent->device\_name, uevent->major, uevent->minor, uevent->action, name);
     struct ueventd_subsystem *subsystem =
             ueventd\_subsystem\_find\_by\_name(uevent->subsystem);
 
@@ -78,10 +78,10 @@ INFO("maple usb1: device\_name:%s, major:%d, minor:%d, action:%s name:%s\\n",  u
          } else {
              /\* ignore other USB events */
              //忽略一些不符合上述条件的USB事件，并返回
-		INFO("maple usb: ignore other USB events\\n");
+        INFO("maple usb: ignore other USB events\\n");
              //我这里是通过判断创建的节点名称是否是我们想要的，如果是则继续往下执行进行节点的创建和移除操作
-	     if(!strncmp(uevent->device_name, "myusb", 5)) {
-		base = "/dev/";
+         if(!strncmp(uevent->device_name, "myusb", 5)) {
+        base = "/dev/";
              }
              else
              return;
@@ -150,3 +150,4 @@ INFO("maple usb1: device\_name:%s, major:%d, minor:%d, action:%s name:%s\\n",  u
      handle_device(uevent->action, devpath, uevent->path, 0,
              uevent->major, uevent->minor, links);
 }
+```
