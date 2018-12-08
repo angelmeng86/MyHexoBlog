@@ -1,9 +1,10 @@
 ---
 title: Centos Linux下部署Parse服务器
 tags:
-  - Parse
+  - parse
+  - saas
 categories:
-  - 工具集
+  - 服务端开发
 date: 2017-03-05 17:42:45
 ---
 

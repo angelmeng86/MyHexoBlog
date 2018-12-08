@@ -1,10 +1,9 @@
 ---
 title: Android 4.0.3源码环境搭建及编译常见问题
 tags:
-  - Android
+  - android
 categories:
-  - Android
-  - Linux
+  - 移动端开发
 date: 2016-06-15 19:52:50
 ---
 

@@ -1,9 +1,9 @@
 ---
 title: Android应用强制停止工具
 tags:
-  - Android
+  - android
 categories:
-  - Android
+  - 移动端开发
 date: 2016-09-07 12:29:13
 ---
 

@@ -1,10 +1,9 @@
 ---
 title: Android驱动设备节点自动创建
 tags:
-  - Android
+  - android
 categories:
-  - Android
-  - Linux
+  - 移动端开发
 date: 2016-10-19 11:08:15
 ---
 

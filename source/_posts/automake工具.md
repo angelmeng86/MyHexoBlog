@@ -3,8 +3,7 @@ title: automake工具
 tags:
   - automake
 categories:
-  - 工具集
-  - Linux
+  - 开发工具
 date: 2016-09-23 11:50:18
 ---
 

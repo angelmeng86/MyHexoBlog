@@ -1,10 +1,10 @@
 ---
 title: Android APK应用加固方案
 tags:
-  - Android
+  - android
   - 加壳
 categories:
-  - Android
+  - 移动端开发
 date: 2016-06-02 11:09:23
 ---
 
