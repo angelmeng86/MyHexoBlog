@@ -3,7 +3,7 @@ title: Android 5.0 Recovery分区还原机制
 tags:
   - android
 categories:
-  - 移动端开发
+  - 嵌入式开发
 date: 2016-06-02 11:05:34
 ---
 

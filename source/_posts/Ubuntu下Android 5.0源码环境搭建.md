@@ -3,7 +3,7 @@ title: Ubuntu下Android 5.0源码环境搭建
 tags:
   - android
 categories:
-  - 移动端开发
+  - 嵌入式开发
 date: 2016-06-15 20:24:40
 ---
 
