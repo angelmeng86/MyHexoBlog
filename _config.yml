@@ -15,8 +15,19 @@ timezone: Asia/Shanghai
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://www.hndev.cn
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title.html
 permalink_defaults:
+
+# 自动生成sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+
+nofollow:
+  enable: true
+  exclude:
+    - www.hndev.cn 
 
 # Directory
 source_dir: source
